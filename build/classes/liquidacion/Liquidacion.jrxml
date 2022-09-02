@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="388f077b-ba31-45d7-8184-5d56b72e5ae2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idLiquidacion" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT
+     liquidacion.`fecha_desde` AS liquidacion_fecha_desde,
+     liquidacion.`fecha_hasta` AS liquidacion_fecha_hasta,
+     liquidacion.`sueldo_neto` AS liquidacion_sueldo_neto,
+     liquidacion.`aporte` AS liquidacion_aporte,
+     liquidacion.`retenciones` AS liquidacion_retenciones,
+     liquidacion.`periodo_liq` AS liquidacion_periodo_liq,
+     detalle_liquidacion.`cantidad` AS detalle_liquidacion_cantidad,
+     detalle_liquidacion.`suma` AS detalle_liquidacion_suma,
+     detalle_liquidacion.`resto` AS detalle_liquidacion_resto,
+     detalle_liquidacion.`valor` AS detalle_liquidacion_valor,
+     concepto.`tipo` AS concepto_tipo,
+     concepto.`valor` AS concepto_valor
+FROM
+     `detalle_liquidacion` detalle_liquidacion INNER JOIN `liquidacion` liquidacion ON detalle_liquidacion.`Liquidacion_idLiquidacion` = liquidacion.`idLiquidacion`
+     INNER JOIN `concepto` concepto ON detalle_liquidacion.`Concepto_idConcepto` = concepto.`idConcepto`
+where liquidacion.idLiquidacion = $P{idLiquidacion}]]>
+	</queryString>
+	<field name="liquidacion_fecha_desde" class="java.sql.Date"/>
+	<field name="liquidacion_fecha_hasta" class="java.sql.Date"/>
+	<field name="liquidacion_sueldo_neto" class="java.lang.Double"/>
+	<field name="liquidacion_aporte" class="java.lang.Double"/>
+	<field name="liquidacion_retenciones" class="java.lang.Double"/>
+	<field name="liquidacion_periodo_liq" class="java.lang.String"/>
+	<field name="detalle_liquidacion_cantidad" class="java.lang.Integer"/>
+	<field name="detalle_liquidacion_suma" class="java.lang.Double"/>
+	<field name="detalle_liquidacion_resto" class="java.lang.Double"/>
+	<field name="detalle_liquidacion_valor" class="java.lang.Double"/>
+	<field name="concepto_tipo" class="java.lang.String"/>
+	<field name="concepto_valor" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="113" splitType="Stretch">
+			<staticText>
+				<reportElement x="17" y="37" width="538" height="31" forecolor="#000099" backcolor="#000000" uuid="7ee52f8f-d23d-4378-8e83-e08e8a7736d6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Bodoni MT" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Regalería PACCAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="68" width="538" height="20" uuid="6ae7b291-8ce5-44d0-bfcc-d4dd64773f99"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[20 de Febrero 998, Rosario de la Frontera, Salta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="83" width="538" height="20" uuid="fa46ef5f-73d5-49fc-b095-3218eb94571c"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[CUIT: 30-50000173-5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="16" width="538" height="20" uuid="85845d38-7740-415c-b4ed-695ca3ae784f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LIQUIDACION DE SUELDOS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="78" splitType="Stretch">
+			<textField>
+				<reportElement x="470" y="10" width="45" height="20" uuid="0ec1737c-df64-445d-9ecd-c4f179b195c2"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{liquidacion_periodo_liq}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="470" y="30" width="45" height="20" uuid="0ace2318-94ef-4079-9e7f-e06b783ee79d"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{liquidacion_fecha_desde}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="470" y="50" width="45" height="20" uuid="5e19f7e5-d1d0-4038-9b63-3295a86a55a3"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{liquidacion_fecha_hasta}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="17" y="10" width="100" height="20" uuid="1b934bd4-5bc3-4fe8-9012-1ebec95e3958"/>
+				<text><![CDATA[Static text]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="30" width="100" height="20" uuid="10a5bb3e-8ba4-4266-95c6-8c506bf4218a"/>
+				<text><![CDATA[Static text]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="363" y="30" width="100" height="20" uuid="bf69d870-a001-4b5c-90af-58626c52ea0b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Fecha desde:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="363" y="10" width="100" height="20" uuid="4cc9690c-4838-4891-bd0a-8bcff95a2ff7"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Periodo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="363" y="50" width="100" height="20" uuid="83b381fa-6b9d-40df-835b-54305c419742"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Fecha hasta:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="39" splitType="Stretch">
+			<staticText>
+				<reportElement x="17" y="11" width="100" height="20" uuid="e5bdb6c2-7808-4fa4-8a8d-16009ad23cb0"/>
+				<text><![CDATA[Concepto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="11" width="100" height="20" uuid="bfb22975-2629-4335-9e92-bae4c7da549c"/>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="267" y="11" width="100" height="20" uuid="77dff92a-0425-4dbc-a461-4fe8d9caecbc"/>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="399" y="11" width="34" height="20" uuid="5c7e0ac2-d7f4-48d6-8fa6-542e72f9dfb1"/>
+				<text><![CDATA[Aporte]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="473" y="11" width="52" height="20" uuid="dcaeed59-41e0-4afe-91e6-9f27c01af3a1"/>
+				<text><![CDATA[Descuento]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="40" splitType="Stretch">
+			<textField>
+				<reportElement x="17" y="16" width="100" height="20" uuid="a8954cc5-f8e5-4dff-a0fa-f04bf00eed1f"/>
+				<textFieldExpression><![CDATA[$F{concepto_tipo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="16" width="100" height="20" uuid="07d72d47-fd5e-4694-8e64-7304fb0af304"/>
+				<textFieldExpression><![CDATA[$F{detalle_liquidacion_cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="399" y="16" width="54" height="20" uuid="09c85885-4c8f-4d30-9747-be2f60dc4cbf"/>
+				<textFieldExpression><![CDATA[$F{detalle_liquidacion_suma}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="473" y="16" width="31" height="20" uuid="4f1c653d-70f9-407c-9971-2fbbd2662530"/>
+				<textFieldExpression><![CDATA[$F{detalle_liquidacion_resto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="141" y="20" width="100" height="20" uuid="541459e7-cb4d-4ecb-91b8-27b6b2e7a2c8"/>
+				<textFieldExpression><![CDATA[$F{concepto_valor}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<textField>
+				<reportElement x="473" y="14" width="43" height="20" uuid="b82c03cd-fd34-4d15-b0ad-46ccc98a27b4"/>
+				<textFieldExpression><![CDATA[$F{liquidacion_retenciones}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="399" y="14" width="42" height="20" uuid="ec21acd7-fdce-4dd6-b00f-5345cdd8a617"/>
+				<textFieldExpression><![CDATA[$F{liquidacion_aporte}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="287" y="14" width="100" height="20" uuid="203c3163-6e38-40c9-9753-f7eb9c63e4d0"/>
+				<text><![CDATA[Total:]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="48" splitType="Stretch">
+			<textField>
+				<reportElement x="155" y="13" width="76" height="20" uuid="9b891055-6807-475a-b3a3-b23a68ebbc3e"/>
+				<textFieldExpression><![CDATA[$F{liquidacion_sueldo_neto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="31" y="13" width="100" height="20" uuid="ca1ba7bf-589d-470d-b676-7f4d6f9c282c"/>
+				<text><![CDATA[Sueldo Neto:]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

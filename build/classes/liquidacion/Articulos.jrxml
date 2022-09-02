@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a2119dad-6793-4e8c-81e8-1121b52d43a9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     articulo.`codigo` AS articulo_codigo,
+     articulo.`descripcion` AS articulo_descripcion,
+     articulo.`precio_venta` AS articulo_precio_venta,
+     articulo.`precio_compra` AS articulo_precio_compra,
+     articulo.`stock` AS articulo_stock
+FROM
+     `articulo` articulo]]>
+	</queryString>
+	<field name="articulo_codigo" class="java.lang.Integer"/>
+	<field name="articulo_descripcion" class="java.lang.String"/>
+	<field name="articulo_precio_venta" class="java.lang.Double"/>
+	<field name="articulo_precio_compra" class="java.lang.Double"/>
+	<field name="articulo_stock" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="16" y="2" width="100" height="20" uuid="3079cb20-90fc-4d73-ac91-e5e246ff68c0"/>
+				<text><![CDATA[Codigo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="128" y="2" width="100" height="20" uuid="ec8d8857-b29a-4c8d-ba05-15b3a81f5e62"/>
+				<text><![CDATA[Descripcion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="324" y="2" width="100" height="20" uuid="555bd4ee-6deb-44b8-8033-edc052641cfd"/>
+				<text><![CDATA[Precio Venta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="415" y="2" width="100" height="20" uuid="93177b84-6cac-4fea-8628-a1f6729cb52e"/>
+				<text><![CDATA[Precio Compra]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="506" y="2" width="100" height="20" uuid="9a138215-2753-48fa-93fc-90349c9c42a0"/>
+				<text><![CDATA[Stock]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="40" splitType="Stretch">
+			<textField>
+				<reportElement x="16" y="11" width="100" height="20" uuid="8aabee41-e298-4dc7-a75f-375406180bc8"/>
+				<textFieldExpression><![CDATA[$F{articulo_codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="128" y="12" width="196" height="20" uuid="bff26b46-42ce-4a08-96a7-d2c0591d1974"/>
+				<textFieldExpression><![CDATA[$F{articulo_descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="324" y="13" width="80" height="20" uuid="c638e521-d801-4983-b7d8-4adfe1a4978d"/>
+				<textFieldExpression><![CDATA[$F{articulo_precio_venta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="415" y="13" width="72" height="20" uuid="c8e45cb9-5660-4c6b-b1d9-939346b82fdd"/>
+				<textFieldExpression><![CDATA[$F{articulo_precio_compra}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="506" y="12" width="37" height="20" uuid="7d5c7daa-4140-4360-9fba-aaa2dbf60ae5"/>
+				<textFieldExpression><![CDATA[$F{articulo_stock}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
